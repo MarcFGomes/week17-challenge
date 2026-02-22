@@ -52,12 +52,12 @@ const developerSchema = new Schema(
   }
 );
 
-// ✅ Virtual: connectionCount
+// Virtual: connectionCount
 developerSchema.virtual("connectionCount").get(function () {
   return this.connections?.length || 0;
 });
 
-// ✅ Virtual: postCount
+// Virtual: postCount
 developerSchema.virtual("postCount").get(function () {
   return this.posts?.length || 0;
 });

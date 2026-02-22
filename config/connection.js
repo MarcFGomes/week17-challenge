@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/bootcampMongooseDB");
+mongoose.connect("mongodb://127.0.0.1:27017/challenge17DB");
 
 module.exports = mongoose.connection;

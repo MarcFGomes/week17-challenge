@@ -1,32 +1,10 @@
 const { Schema, model } = require("mongoose");
+const reactionSchema = require("./Reaction");
 
 // Simple formatted date getter
 const dateFormatter = (timestamp) => timestamp.toLocaleString();
 
-const reactionSchema = new Schema(
-  {
-    reactionBody: {
-      type: String,
-      required: true,
-      trim: true,
-      maxlength: 280,
-    },
-    username: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: dateFormatter,
-    },
-  },
-  {
-    toJSON: { getters: true },
-    id: false,
-  }
-);
+
 
 const postSchema = new Schema(
   {
@@ -47,7 +25,7 @@ const postSchema = new Schema(
       default: Date.now,
       get: dateFormatter,
     },
-    reactions: [reactionSchema], // ✅ subdocuments
+    reactions: [reactionSchema], // subdocuments
   },
   {
     toJSON: { virtuals: true, getters: true },
@@ -56,7 +34,7 @@ const postSchema = new Schema(
   }
 );
 
-// ✅ Virtual: reactionCount
+// Virtual: reactionCount
 postSchema.virtual("reactionCount").get(function () {
   return this.reactions?.length || 0;
 });
